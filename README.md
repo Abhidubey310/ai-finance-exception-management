@@ -1,44 +1,30 @@
 # AI Finance Exception Management
 
-**Finance Transformation | AI-Assisted Operations | Controls | Human-in-the-Loop Automation**
+**Finance Transformation | AI-Assisted Operations | Controls | Human Review**
 
-A synthetic portfolio solution showing how finance exceptions can be detected, classified, prioritised, summarised and routed for controlled human review across Order-to-Cash, Procure-to-Pay, Record-to-Report, Intercompany and Treasury.
+I built this project around a simple question: **where can AI genuinely help Finance teams without weakening the control environment?**
 
-The project combines deterministic finance controls with an AI-assistant design pattern. Rules establish the factual exception, materiality and ownership; the AI layer is limited to summarisation and decision support. Final finance actions remain subject to human approval.
+The answer, in my view, is not to let AI make accounting decisions. It is more useful in the investigation layer — summarising exceptions, organising evidence and suggesting the next review step — while deterministic controls and human approval remain authoritative.
 
-> **Portfolio integrity:** This project is independently recreated using fictional entities, synthetic data and generic control scenarios. It contains no employer data, customer information, proprietary logic, credentials or confidential financial information.
+This repository models that approach across O2C, P2P, R2R, Intercompany and Treasury using synthetic data.
 
-## Executive summary
+## The problem
 
-### Business problem
+Finance exceptions often sit across different systems, spreadsheets and inboxes. Teams spend time repeatedly working out what happened, how material it is, who owns it and what evidence is still missing.
 
-Finance teams often spend significant time reviewing exceptions across reconciliations, billing, payments, journals and intercompany processes. Typical problems include:
+The same issues also create a risk when AI is introduced too quickly: a model may sound confident even where a finance control should be rule-based and independently verifiable.
 
-- fragmented exception queues across systems and spreadsheets;
-- inconsistent prioritisation by value, ageing and control risk;
-- repeated manual investigation of similar issues;
-- weak ownership and escalation paths;
-- limited evidence explaining why an exception was flagged; and
-- inappropriate use of AI where a deterministic finance control should remain authoritative.
+## The approach
 
-### Solution concept
+I separated the workflow into two layers.
 
-I designed a hybrid exception-management architecture that separates **control logic** from **AI assistance**.
+**Control layer:** validates the data, calculates variances, classifies the exception, assigns severity and routes ownership using deterministic rules.
 
-The solution:
+**AI-assistance layer:** takes the structured facts and produces a concise review summary and suggested investigation path. It does not post journals, release payments, recognise revenue, change master data or close an exception.
 
-1. validates the incoming finance-exception dataset;
-2. calculates amount variance and control indicators;
-3. classifies each exception using deterministic rules;
-4. assigns severity and accountable finance ownership;
-5. builds a structured evidence packet;
-6. creates an AI-ready review summary and recommended next action;
-7. flags where escalation or finance approval is required; and
-8. produces management summaries by process area, exception type and severity.
+That separation is the core design principle of the project.
 
-The AI layer is deliberately non-authoritative: it can explain and summarise the exception, but it cannot post journals, release payments, recognise revenue, change master data or close an exception without human review.
-
-## Hybrid decision model
+## Process flow
 
 ```mermaid
 flowchart TD
@@ -56,9 +42,9 @@ flowchart TD
     K --> L[Audit trail & management reporting]
 ```
 
-## Demonstration dataset
+## Sample dataset
 
-The synthetic dataset contains **14 finance exceptions** across five finance process areas, representing **£720.7k of illustrative expected transaction exposure** and **£143.2k of absolute variance**.
+The synthetic data contains **14 exceptions** across five finance process areas, representing **£720.7k of illustrative expected transaction exposure** and **£143.2k of absolute variance**.
 
 | Severity | Cases |
 |---|---:|
@@ -67,54 +53,47 @@ The synthetic dataset contains **14 finance exceptions** across five finance pro
 | Medium | 6 |
 | Low | 2 |
 
-The sample includes reconciliation breaks, missing documentation, approval-control failures, potential duplicates and data-quality issues. All figures are synthetic and exist only to demonstrate the operating model.
+The scenarios include reconciliation breaks, missing documentation, approval failures, possible duplicates and data-quality issues.
 
-## AI role versus control role
+## What AI does — and does not do
 
-| Component | Purpose | Authority |
+| Component | Role | Authority |
 |---|---|---|
 | Validation rules | Check required data and formats | Deterministic |
 | Exception rules | Identify the control break | Deterministic |
 | Severity model | Prioritise by value, ageing and risk | Deterministic |
-| Ownership rules | Route to accountable finance team | Deterministic |
-| AI assistant | Summarise facts and suggest investigation steps | Advisory only |
-| Finance reviewer | Validate evidence and approve action | Human authority |
+| Ownership rules | Route the case | Deterministic |
+| AI assistant | Summarise facts and suggest investigation steps | Advisory |
+| Finance reviewer | Validate evidence and approve action | Human |
 
-This separation is intentional. In a finance environment, AI should not silently override accounting policy, approval controls or evidence requirements.
+This is deliberate. In a controlled finance process, AI should help the reviewer work faster, not quietly replace policy, approval limits or accounting judgement.
 
-## Example exception
+## Example
 
-A synthetic R2R case has an expected clearing balance of **£75,000**, no matched actual balance and has remained open for **105 days**. The deterministic engine classifies it as a **Critical Reconciliation Break**, assigns it to **Financial Control**, and marks escalation as required.
+One synthetic R2R case has an expected clearing balance of **£75,000**, no matched actual balance and has been open for **105 days**.
 
-The assistant layer receives only the structured facts and produces a concise review packet describing the issue and the recommended investigation path. A controller still decides the accounting action.
+The rule engine classifies it as a **Critical Reconciliation Break**, assigns it to **Financial Control** and marks it for escalation. The assistant then turns the structured facts into a short review note and suggests the investigation sequence.
 
-## Key capabilities demonstrated
+The accounting action still sits with the controller.
 
-- Multi-process finance exception intake
-- Deterministic classification and reason codes
-- Amount-variance calculation
-- Ageing and materiality prioritisation
-- Finance ownership assignment
-- AI-ready structured evidence packets
-- Explainable assistant summaries
-- Human-in-the-loop approval controls
-- Escalation logic
-- Management summaries by process, severity and exception type
-- Synthetic automated tests
+## Controls built into the design
 
-## Enterprise implementation view
+- required-field and data-type validation;
+- deterministic classification before AI is used;
+- clear severity and ownership rules;
+- structured evidence passed to the assistant;
+- no autonomous posting or release actions;
+- human approval for material finance decisions;
+- traceable reason codes and outputs; and
+- synthetic test coverage for core rules.
 
-A production implementation could connect to:
+See [AI Governance](docs/ai_governance.md), [Business Rules](docs/business_rules.md) and [Solution Design](docs/solution_design.md).
 
-- **ERP:** NetSuite, SAP, Oracle or Dynamics;
-- **CRM / Billing:** Salesforce and subscription/billing platforms;
-- **Bank / Treasury feeds:** cash and payment data;
-- **Workflow:** ServiceNow, case-management or finance work queues;
-- **Data platform:** governed transaction and reconciliation datasets;
-- **AI platform:** approved enterprise LLM with prompt controls, logging and restricted tool access; and
-- **BI:** finance exception dashboards and control MI.
+## Enterprise view
 
-See [Enterprise Implementation Blueprint](docs/enterprise_implementation_blueprint.md) and [AI Governance](docs/ai_governance.md).
+A production version could connect to ERP, CRM/billing, bank feeds, workflow tools and a governed data layer. The AI component would sit behind enterprise controls such as approved models, prompt/version management, logging, least-privilege access and restricted actions.
+
+See [Enterprise Implementation Blueprint](docs/enterprise_implementation_blueprint.md).
 
 ## Repository structure
 
@@ -141,16 +120,6 @@ ai-finance-exception-management/
 └── .gitignore
 ```
 
-## Technology
-
-- Python
-- pandas
-- pytest
-- Rules-based control engine
-- Provider-agnostic AI-assistant pattern
-- Mermaid architecture diagrams
-- GitHub documentation and version control
-
 ## Run locally
 
 ```bash
@@ -159,16 +128,12 @@ python src/exception_management_engine.py
 pytest -q
 ```
 
-The public repository intentionally uses an offline deterministic assistant stub rather than calling a live LLM. This keeps the project reproducible, requires no API key and makes the control boundary explicit. The same structured review packet could be passed to an approved enterprise model in production.
+The public version uses an offline assistant stub rather than a live LLM. That keeps the project reproducible, avoids API keys and makes the boundary between finance controls and AI assistance easy to see.
 
-## What this project demonstrates professionally
+## Why I include this project in my portfolio
 
-This repository demonstrates how I approach **AI-enabled Finance Transformation**, rather than treating AI as an isolated chatbot use case:
+For me, the interesting part of AI in Finance is not the chatbot. It is designing the operating model around it: what should stay rule-based, what AI can accelerate, where approval must remain human and how the whole process is audited.
 
-**Finance problem → control design → exception logic → data evidence → AI assistance → human governance → workflow → management insight**
+## Portfolio note
 
-It demonstrates capability across finance operations, process redesign, AI solution architecture, controls, exception management, data quality, UAT thinking, enterprise implementation and business-to-technology translation.
-
-## Disclaimer
-
-This is an independent portfolio project built solely with synthetic data and generic industry scenarios. It should not be represented as the exact operating model, source code, data or AI implementation of any employer. It is not intended to make accounting, payment, revenue-recognition, legal, credit or customer decisions without appropriate professional review.
+This is an independent recreation using fictional entities, synthetic data and generic control scenarios. It contains no employer data, customer information, proprietary logic or confidential financial information.
