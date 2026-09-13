@@ -1,0 +1,15 @@
+exception_id,process_area,source_system,entity,counterparty,expected_amount,actual_amount,currency,exception_date,days_open,document_status,approval_status,reconciliation_status,duplicate_indicator,description
+EXC-001,O2C,Salesforce / ERP,UK01,Northstar Analytics,48000,42000,GBP,2026-08-10,35,Complete,Approved,Partial,No,Invoice value does not match contracted billing schedule
+EXC-002,P2P,ERP,UK01,Greenfield Services,12500,12500,GBP,2026-09-01,13,Missing,Approved,Matched,No,Supplier invoice received without supporting purchase order
+EXC-003,R2R,ERP / Bank,UK02,Harbour Retail,75000,0,GBP,2026-06-01,105,Complete,Approved,Unmatched,No,Bank clearing balance remains unreconciled
+EXC-004,Intercompany,ERP,UK01 / US01,Maplebridge Group,33000,28000,GBP,2026-08-25,20,Complete,Approved,Partial,No,Intercompany balances differ between entities
+EXC-005,Treasury,Bank / ERP,UK01,Silverline Logistics,250000,250000,GBP,2026-09-10,4,Complete,Missing,Matched,No,High-value payment prepared without second approval
+EXC-006,O2C,Billing / ERP,UK01,Bluehaven Learning,18500,18500,GBP,2026-08-05,40,Complete,Approved,Matched,Yes,Possible duplicate invoice generated for same order
+EXC-007,P2P,ERP,EU01,Redwood Manufacturing,9600,7100,EUR,2026-09-02,12,Complete,Approved,Partial,No,Invoice amount differs from goods receipt
+EXC-008,R2R,ERP,UK01,Clearview Housing,4200,0,GBP,2026-09-08,6,Complete,Approved,Unmatched,No,Manual journal posted to suspense account and not cleared
+EXC-009,O2C,CRM / ERP,UK02,Westbridge Foods,1800,1800,GBP,2026-09-09,5,Complete,Approved,Matched,No,Customer account mapping error prevents automated cash application
+EXC-010,Intercompany,ERP,UK01 / AU01,Oakfield Consulting,62000,62000,GBP,2026-07-01,75,Complete,Approved,Unmatched,No,Intercompany charge not matched by receiving entity
+EXC-011,P2P,ERP,UK01,Pinecrest Media,870,870,GBP,2026-09-11,3,Complete,Approved,Matched,Yes,Potential duplicate low-value supplier invoice
+EXC-012,R2R,ERP,UK03,Rivergate Systems,150000,147500,GBP,2026-08-18,27,Complete,Approved,Partial,No,Accrual reversal differs from expected amount
+EXC-013,Treasury,Bank / ERP,UK01,Lakeside Services,48000,0,GBP,2026-08-01,44,Complete,Approved,Unmatched,No,Bank transaction not matched to ledger entry
+EXC-014,O2C,Billing / CRM,EU01,Cedar Health,7200,7200,EUR,2026-09-03,11,Missing,Approved,Matched,No,Billing support document unavailable for customer query
