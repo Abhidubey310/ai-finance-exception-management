@@ -1,0 +1,12 @@
+process_area,severity,exception_count,expected_exposure,absolute_variance
+Intercompany,High,1,62000,0.0
+Intercompany,Medium,1,33000,5000.0
+O2C,High,2,66500,6000.0
+O2C,Low,1,1800,0.0
+O2C,Medium,1,7200,0.0
+P2P,Low,1,870,0.0
+P2P,Medium,2,22100,2500.0
+R2R,Critical,1,75000,75000.0
+R2R,Medium,2,154200,6700.0
+Treasury,Critical,1,250000,0.0
+Treasury,High,1,48000,48000.0
