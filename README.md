@@ -24,6 +24,20 @@ I separated the workflow into two layers.
 
 That separation is the core design principle of the project.
 
+## How this reflects my professional AI workflow
+
+This project also reflects how I use **Claude and Claude Code** in finance transformation work.
+
+I use AI as a build and investigation accelerator: translating finance requirements into prototype logic, refining business rules, developing validation checks, creating test scenarios, investigating exceptions and iterating quickly with Finance users.
+
+The important distinction is that the **finance process, control requirements and acceptance criteria come first**. AI helps accelerate the delivery, but the solution still has to reconcile, pass UAT and operate inside the appropriate approval and governance model.
+
+My working pattern is:
+
+**Finance problem → structured requirements → AI-assisted build → validation → UAT → productionisation → measurable outcome**
+
+See [AI-Assisted Finance Automation Delivery Workflow](docs/claude_code_delivery_workflow.md) for more detail.
+
 ## Process flow
 
 ```mermaid
@@ -112,6 +126,7 @@ ai-finance-exception-management/
 │   ├── business_rules.md
 │   ├── solution_design.md
 │   ├── ai_governance.md
+│   ├── claude_code_delivery_workflow.md
 │   ├── enterprise_implementation_blueprint.md
 │   └── portfolio_story.md
 ├── tests/
@@ -136,4 +151,4 @@ For me, the interesting part of AI in Finance is not the chatbot. It is designin
 
 ## Portfolio note
 
-This is an independent recreation using fictional entities, synthetic data and generic control scenarios. It contains no employer data, customer information, proprietary logic or confidential financial information.
+This is an independent recreation using fictional entities, synthetic data and generic control scenarios. It contains no employer data, customer information, proprietary logic, internal prompts or confidential financial information.
